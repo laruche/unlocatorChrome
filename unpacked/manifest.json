@@ -2,7 +2,8 @@
   "name": "Unlocator Status",
 
   "description": "Update your IP configuration automatically !",
-  "version": "0.0.1",
+  "author" : "laruche",
+  "version": "0.1.1",
   "permissions": [
     "tabs", "http://*/*", "https://*/*", "storage"
   ],

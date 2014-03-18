@@ -1,22 +1,40 @@
 /// infos
 
 var updateIP = function() {
+  checkIP(function(ip) {
+    getAPIKEY(function(link) {      
+      jQuery.ajax({
+          url: link,        
+        }).error(function(data) {
+          //error
+        }).done(function(data) { 
 
-  getAPIKEY(function(link) {
-    jQuery.ajax({
-        url: link,        
-      }).error(function(data) {
-        //error
-      }).done(function(data) {        
-        //ok
-        chrome.browserAction.setBadgeBackgroundColor({color:[7, 149, 0, 255]}); 
-        chrome.browserAction.setBadgeText({text: 'OK'});
-      });
-  })
+          switch(data) {
+            case 'Missing or Invalid API Key':
+              chrome.browserAction.setBadgeBackgroundColor({color:[254, 51, 0, 255]}); 
+              chrome.browserAction.setBadgeText({text: '?'});
+              break;
+
+            case "IP "+ip+" exists":
+            case "IP "+ip+" added":              
+              chrome.browserAction.setBadgeBackgroundColor({color:[7, 149, 0, 255]}); 
+              chrome.browserAction.setBadgeText({text: '✓'});
+              break;
+
+            default:               
+              chrome.browserAction.setBadgeBackgroundColor({color:[254, 51, 0, 255]}); 
+              chrome.browserAction.setBadgeText({text: '?'});
+              break; 
+          }
+          
+          
+        });
+    });
+  });
 }
 
 var getAPIKEY = function(cb) {
-  var searchValue = 'APIKey_unlocator';
+  var searchValue = 'APIKey_unloc';
   chrome.storage.sync.get(searchValue,function(object){
     if(typeof(object[searchValue]) == 'undefined')
     {
@@ -47,9 +65,7 @@ var getIP = function() {
       type: "GET",
       url: "https://jsonip.appspot.com/",
       dataType : 'json'
-    }).done(function(data) {      
-      console.log(ip);
-      console.log(data.ip)
+    }).done(function(data) {            
       if(ip != data.ip) {
         updateIP();
         chrome.storage.sync.set({'IP_unlocator': data.ip}, function() {});
@@ -58,6 +74,8 @@ var getIP = function() {
   })  
 };
 
+chrome.browserAction.setBadgeBackgroundColor({color:[254, 51, 0, 255]}); 
+chrome.browserAction.setBadgeText({text: '?'});
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {  
   getIP();
