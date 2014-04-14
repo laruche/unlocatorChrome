@@ -3,24 +3,18 @@
 
   "description": "Update your IP configuration automatically !",
   "author" : "laruche",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "permissions": [
-    "tabs", "http://*/*", "https://*/*", "storage"
+    "webRequest","tabs", "storage"
   ],
   "icons": { "128": "icon.png" },
   "background": {
     "page": "html/background.html"
   },
   "browser_action": {
-      "default_title": "Set this page's color.",
+      "default_title": "Unlocator extension",
       "default_icon": "icon.png",
       "default_popup": "html/popupLogin.html"
-  },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["js/messages.js"]
-    }
-  ],
+  },  
   "manifest_version": 2
 }

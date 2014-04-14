@@ -9,7 +9,7 @@
     <script src="../js/login.js"></script>
   </head>
   <body>
-    <p><img src="/img/logo_bleu.png" /></p>
+    <p><img src="/img/logo_bleu.png" /></p>    
     <form class="form-horizontal" role="form" id="loginForm">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Unlocator API Key</label>
@@ -17,22 +17,38 @@
           <input type="text" class="form-control" id="APIKey" placeholder="API Key">
         </div>
       </div>
-      
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" id="connectUser" class="btn btn-default">Update API Key</button>
         </div>
       </div>
+    </form>
+      
+      <div id="messageAPI"></div>
+
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <p id="message">Find your Unlocator API Key on your <a target="_blank" href="https://unlocator.com/account/member">Unlocator Account</a></p>
+          <p id="messageAPIHelp">Find your Unlocator API Key on your <a target="_blank" href="https://unlocator.com/account/member">Unlocator Account</a></p>
         </div>
       </div> 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <p id="message">Create a <a target="_blank" href="http://unlocator.com/account/aff/go/a41FRdeZON3XIS37">Unlocator account</a></p>
+          <p id="messageAccount">Create a <a target="_blank" href="http://unlocator.com/account/aff/go/a41FRdeZON3XIS37">Unlocator account</a></p>
         </div>
-      </div> 
+      </div>
+    <form class="form-horizontal" role="form" id="refreshForm">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Unlocator Refresh Time (in Minutes)</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="APITime" placeholder="Time in minutes">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" id="connectUser" class="btn btn-default">Update Refresh Time</button>
+        </div>
+      </div>
+
     </form>
   </body>
 </html>
